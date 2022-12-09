@@ -1,6 +1,6 @@
 This repo contains thorough tutorials for 
 1. Deploying OAI5G RAN/Core stack on USRP N310 and a PC.
-2. Deploying FreeRIC on OAI5G stack. 
+2. Deploying FlexRIC on OAI5G stack. 
 3. Customizing OAI5G MAC scheduler.
 
 # Deploying OAI5G stack
@@ -302,7 +302,7 @@ sudo docker exec -it oai-amf /bin/bash
 ```
 
 
-# Deploying FreeRIC
+# Deploying FlexRIC
 TBD
 
 # Customizing MAC scheduler
