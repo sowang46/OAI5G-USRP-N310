@@ -253,7 +253,7 @@ sudo ./program_uicc --adm 12345678 --imsi 001010000000001 --isdn 00000001 --acc 
 Start the CN by running this command
 
 ```bash
-python3 core-network.py --type start-basic --scenario 2
+python3 core-network.py --type start-basic --scenario 1
 ```
 
 Once you see output like this, your CN is up and you are ready to start the RAN.
