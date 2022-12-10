@@ -250,7 +250,7 @@ sudo ./program_uicc --adm 12345678 --imsi 001010000000001 --isdn 00000001 --acc 
 ## Run 
 
 ### Run CN
-Start the CN by running this command
+Start the CN by running this command.
 
 ```bash
 python3 core-network.py --type start-basic --scenario 1
@@ -272,16 +272,18 @@ More details on running CN can be found in [this tutorial](https://gitlab.eureco
 
 ### Run gNB w/ USRP
 
-Run this command to start gNB with USRP N310:
+Run the following commands to start gNB with USRP N310. Note: all software modem executables have to be run in `openairinterface5g/cmake_targets/ran_build/build` directory.
 
 ```bash
+cd ~/openairinterface5g/cmake_targets/ran_build/build
 sudo ./nr-softmodem -O ../../../targets/PROJECTS/GENERIC-NR-5GC/CONF/gnb.band78.sa.fr1.162PRB.2x2.usrpn310.conf --sa --usrp-tx-thread-config 1
 ```
 
 ### Run gNB w/ rfsimulator
 
-Run this command to start gNB with rfsimulator:
+Run the following commands to start gNB with rfsimulator:
 ```bash
+cd ~/openairinterface5g/cmake_targets/ran_build/build
 sudo ./nr-softmodem -O ../../../targets/PROJECTS/GENERIC-NR-5GC/CONF/gnb.sa.band78.fr1.106PRB.usrpb210.conf --gNBs.[0].min_rxtxtime 6 --rfsim --sa
 ```
 
