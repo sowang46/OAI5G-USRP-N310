@@ -310,6 +310,19 @@ TBD
 # Customizing MAC scheduler
 Related tutorial: [SW_archi](https://gitlab.eurecom.fr/oai/openairinterface5g/-/blob/develop/doc/SW_archi.md)
 
+The scheduler function is called by the chain: 
+
+```bash
+nr_ul_indication()->gNB_dlsch_ulsch_scheduler()->nr_schedule_ulsch()/nr_schedule_ue_spec()->nr_fr1_ulsch_preprocessor()->pf_ul()
+```
+
+> To signal which users have how many resources, the preprocessor populates the NR_sched_pusch_t (for values changing every TTI, e.g., frequency domain allocation) and NR_sched_pusch_save_t (for values changing less frequently, 
+> at least in FR1 [to my understanding], e.g., DMRS fields when the time domain allocation stays between TTIs) structures. 
+
+The actual scheduler implementation is in `pf_ul()`, which implements a basic PF scheduler. The code is as follows (Line 1529 in [gNB_scheduler_ulsch.c](https://gitlab.eurecom.fr/oai/openairinterface5g/-/blob/develop/openair2/LAYER2/NR_MAC_gNB/gNB_scheduler_ulsch.c))
+
+A brief analysis of the code can be found [here](docs/scheduler_code.md)
+
 # ToDo
 1. Find a way to test UE attaching and throughput.
 2. Test OAI UE with a new USRP N310.
