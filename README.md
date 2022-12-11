@@ -321,7 +321,7 @@ nr_ul_indication()->gNB_dlsch_ulsch_scheduler()->nr_schedule_ulsch()/nr_schedule
 
 The actual scheduler implementation is in `pf_ul()`, which implements a basic PF scheduler. The code is as follows (Line 1529 in [gNB_scheduler_ulsch.c](https://gitlab.eurecom.fr/oai/openairinterface5g/-/blob/develop/openair2/LAYER2/NR_MAC_gNB/gNB_scheduler_ulsch.c))
 
-A brief analysis of the code can be found [here](docs/scheduler_code.md)
+A brief analysis of the code can be found [here](docs/scheduler_code.md).
 
 # ToDo
 1. Find a way to test UE attaching and throughput.
