@@ -297,6 +297,8 @@ or
 sudo RFSIMULATOR=127.0.0.1 ./nr-uesoftmodem -r 106 --numerology 1 --band 78 -C 3619200000 --nokrnmod --rfsim --sa -O nr-ue-sim.oai.conf
 ```
 
+>NOTE: The first 5 digits of UE's IMSI should match the PLMN and UE's DNN should be present in SESSION_MANGMENT_SUBSCRIPTION_LIST in smf's configuration file
+
 ### Debug
 1. The control message in CN can be captured on `demo-oai` interface. These captures can be quite helpful since Wireshark can parse most of SBI messages.
 2. You can also check CN NFs log using `docker logs`. For example, to check AMF's log, run:
