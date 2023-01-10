@@ -232,8 +232,8 @@ oai-amf:
             - TZ=Europe/paris
             - INSTANCE=0
             - PID_DIRECTORY=/var/run
-            - MCC=001       # Match MCC in gNB config
-            - MNC=01        # Match MNC in gNB config
+            - MCC=208       # Match MCC in gNB config
+            - MNC=99        # Match MNC in gNB config
             - REGION_ID=128
             - AMF_SET_ID=1
 ```
@@ -277,7 +277,8 @@ Run the following commands to start gNB with USRP N310. Note: all software modem
 ```bash
 cd ~/openairinterface5g/cmake_targets/ran_build/build
 sudo ./nr-softmodem -O ../../../targets/PROJECTS/GENERIC-NR-5GC/CONF/gnb.band78.sa.fr1.162PRB.2x2.usrpn310.conf --sa --usrp-tx-thread-config 1
-```
+```8
+
 
 ### Run gNB w/ rfsimulator
 
@@ -292,6 +293,12 @@ Then on the same PC, launch another terminal start UE with rfsimulator using thi
 cd ~/openairinterface5g/cmake_targets/ran_build/build
 sudo RFSIMULATOR=127.0.0.1 ./nr-uesoftmodem -r 106 --numerology 1 --band 78 -C 3619200000 --nokrnmod --rfsim --sa --uicc0.imsi 001010000000001 --uicc0.nssai_sd 1
 ```
+or
+```
+sudo RFSIMULATOR=127.0.0.1 ./nr-uesoftmodem -r 106 --numerology 1 --band 78 -C 3619200000 --nokrnmod --rfsim --sa -O nr-ue-sim.oai.conf
+```
+
+>NOTE: The first 5 digits of UE's IMSI should match the PLMN and UE's DNN should be present in SESSION_MANGMENT_SUBSCRIPTION_LIST in smf's configuration file
 
 ### Debug
 1. The control message in CN can be captured on `demo-oai` interface. These captures can be quite helpful since Wireshark can parse most of SBI messages.
@@ -310,6 +317,19 @@ TBD
 
 # Customizing MAC scheduler
 Related tutorial: [SW_archi](https://gitlab.eurecom.fr/oai/openairinterface5g/-/blob/develop/doc/SW_archi.md)
+
+The scheduler function is called by the chain: 
+
+```bash
+nr_ul_indication()->gNB_dlsch_ulsch_scheduler()->nr_schedule_ulsch()/nr_schedule_ue_spec()->nr_fr1_ulsch_preprocessor()->pf_ul()
+```
+
+> To signal which users have how many resources, the preprocessor populates the NR_sched_pusch_t (for values changing every TTI, e.g., frequency domain allocation) and NR_sched_pusch_save_t (for values changing less frequently, 
+> at least in FR1 [to my understanding], e.g., DMRS fields when the time domain allocation stays between TTIs) structures. 
+
+The actual scheduler implementation is in `pf_ul()`, which implements a basic PF scheduler. The code is as follows (Line 1529 in [gNB_scheduler_ulsch.c](https://gitlab.eurecom.fr/oai/openairinterface5g/-/blob/develop/openair2/LAYER2/NR_MAC_gNB/gNB_scheduler_ulsch.c))
+
+A brief analysis of the code can be found [here](docs/scheduler_code.md).
 
 # ToDo
 1. Find a way to test UE attaching and throughput.
