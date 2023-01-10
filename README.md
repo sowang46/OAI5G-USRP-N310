@@ -232,8 +232,8 @@ oai-amf:
             - TZ=Europe/paris
             - INSTANCE=0
             - PID_DIRECTORY=/var/run
-            - MCC=001       # Match MCC in gNB config
-            - MNC=01        # Match MNC in gNB config
+            - MCC=208       # Match MCC in gNB config
+            - MNC=99        # Match MNC in gNB config
             - REGION_ID=128
             - AMF_SET_ID=1
 ```
@@ -277,7 +277,8 @@ Run the following commands to start gNB with USRP N310. Note: all software modem
 ```bash
 cd ~/openairinterface5g/cmake_targets/ran_build/build
 sudo ./nr-softmodem -O ../../../targets/PROJECTS/GENERIC-NR-5GC/CONF/gnb.band78.sa.fr1.162PRB.2x2.usrpn310.conf --sa --usrp-tx-thread-config 1
-```
+```8
+
 
 ### Run gNB w/ rfsimulator
 
@@ -290,6 +291,10 @@ sudo ./nr-softmodem -O ../../../targets/PROJECTS/GENERIC-NR-5GC/CONF/gnb.sa.band
 Then on the same PC, start UE with rfsimulator using this command:
 ```bash
 sudo RFSIMULATOR=127.0.0.1 ./nr-uesoftmodem -r 106 --numerology 1 --band 78 -C 3619200000 --nokrnmod --rfsim --sa --uicc0.imsi 001010000000001 --uicc0.nssai_sd 1
+```
+or
+```
+sudo RFSIMULATOR=127.0.0.1 ./nr-uesoftmodem -r 106 --numerology 1 --band 78 -C 3619200000 --nokrnmod --rfsim --sa -O nr-ue-sim.oai.conf
 ```
 
 ### Debug
