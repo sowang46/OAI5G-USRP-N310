@@ -1,0 +1,6 @@
+[submodule "openairinterface5g-develop"]
+	path = openairinterface5g-develop
+	url = https://github.com/sowang46/openairinterface5g-develop.git
+[submodule "oai-cn5g-develop"]
+	path = oai-cn5g-develop
+	url = https://github.com/sowang46/oai-cn5g-develop.git

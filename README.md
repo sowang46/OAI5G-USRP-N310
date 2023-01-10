@@ -287,8 +287,9 @@ cd ~/openairinterface5g/cmake_targets/ran_build/build
 sudo ./nr-softmodem -O ../../../targets/PROJECTS/GENERIC-NR-5GC/CONF/gnb.sa.band78.fr1.106PRB.usrpb210.conf --gNBs.[0].min_rxtxtime 6 --rfsim --sa
 ```
 
-Then on the same PC, start UE with rfsimulator using this command:
+Then on the same PC, launch another terminal start UE with rfsimulator using this command:
 ```bash
+cd ~/openairinterface5g/cmake_targets/ran_build/build
 sudo RFSIMULATOR=127.0.0.1 ./nr-uesoftmodem -r 106 --numerology 1 --band 78 -C 3619200000 --nokrnmod --rfsim --sa --uicc0.imsi 001010000000001 --uicc0.nssai_sd 1
 ```
 
