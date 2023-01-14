@@ -164,7 +164,7 @@ The PLMN section (Line 15) has to be filled with the proper values that match th
 ```bash
     // Tracking area code, 0x0000 and 0xfffe are reserved values
     tracking_area_code  =  1;
-    plmn_list = ({ mcc = 208; mnc = 99; mnc_length = 2; snssaiList = ({ sst = 1 }) });
+    plmn_list = ({ mcc = 001; mnc = 01; mnc_length = 2; snssaiList = ({ sst = 1 }) });
 ```
 
 The IP interfaces for the communication with the CN (Line 205) also need to be set to match the IP address of AMF and UPF.
@@ -299,6 +299,29 @@ sudo RFSIMULATOR=127.0.0.1 ./nr-uesoftmodem -r 106 --numerology 1 --band 78 -C 3
 ```
 
 >NOTE: The first 5 digits of UE's IMSI should match the PLMN and UE's DNN should be present in SESSION_MANGMENT_SUBSCRIPTION_LIST in smf's configuration file
+
+### Ping test
+- UE host
+```bash
+ping 192.168.70.135 -t -S 12.1.1.2      # 12.1.1.2 is the IP address of oaitun_ue1
+```
+- CN5G host
+```bash
+docker exec -it oai-ext-dn ping 12.1.1.2
+```
+
+### Downlink iPerf test
+- UE host
+```bash
+iperf -s -u -i 1 -B 12.1.1.2    # Somehow iperf3 doesn't work
+```
+
+- CN5G host
+```bash
+docker exec -it oai-ext-dn /bin/bash  
+iperf -u -t 86400 -i 1 -fk -B 192.168.70.135 -b 100M -c 12.1.1.2 
+```
+
 
 ### Debug
 1. The control message in CN can be captured on `demo-oai` interface. These captures can be quite helpful since Wireshark can parse most of SBI messages.
