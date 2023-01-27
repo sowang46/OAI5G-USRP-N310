@@ -322,8 +322,7 @@ iperf -s -u -i 1 -B 12.1.1.2    # Somehow iperf3 doesn't work
 
 - CN5G host
 ```bash
-docker exec -it oai-ext-dn /bin/bash  
-iperf -u -t 86400 -i 1 -fk -B 192.168.70.135 -b 100M -c 12.1.1.2 
+docker exec -it oai-ext-dn iperf -u -t 86400 -i 1 -fk -B 192.168.70.135 -b 100M -c 12.1.1.2 
 ```
 
 
