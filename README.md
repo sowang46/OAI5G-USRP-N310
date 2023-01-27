@@ -3,6 +3,10 @@ This repo contains thorough tutorials for
 2. Deploying FlexRIC on OAI5G stack. 
 3. Customizing OAI5G MAC scheduler.
 
+A working version of RAN and core can be found here:
+ - [RAN](https://github.com/sowang46/openairinterface5g-develop.git)
+ - [Core](https://github.com/sowang46/oai-cn5g-develop.git)
+
 # Deploying OAI5G stack
 In this tutorial we describe how to deploy OAI5G stack on PC (CU/DU/Core), USRP N310 (RU/UE), and/or COTS UE.
 
