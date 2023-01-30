@@ -18,8 +18,7 @@ Note: In the case of 4 or more UEs, some UEs may not be able to register due to 
 Check if the UE is successfully registered by checking the existance of `oaitun_ue1` interface inside the container:
 
 ```
-docker exec -it rfsim5g-oai-nr-ue1 /bin/bash
-# ifconfig | grep oaitun_ue1
+docker exec -it rfsim5g-oai-nr-ue1 ifconfig | grep oaitun_ue1
 ```
 
 Run parallel iPerf tests in one tmux session with `start_exp.sh`. Make sure all UEs are registered before starting the experiment.

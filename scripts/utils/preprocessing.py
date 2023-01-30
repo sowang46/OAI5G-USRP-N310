@@ -69,15 +69,15 @@ if __name__=="__main__":
                     (137, 138) : "nrOfLayers",
                     (143, 147) : "TBS",
                    }
-    sample_mac_log = OAILogParser(fn="../../examples/0118_debug_log_1_various_rate.log", log_type=log_type, log_entries=log_entries, 
-                                output_type="matlab", output_path="../0118_debug_log_1_mac.mat")
+    sample_mac_log = OAILogParser(fn="../../examples/0127_5ue_iperf_100M.log", log_type=log_type, log_entries=log_entries, 
+                                output_type="matlab", output_path="../0127_mac.mat")
 
-    log_type = ("[RLC_BUFFER]", 28)
-    log_entries = { (20, 24)   : "frame",
-                    (25, 27)   : "slot",
-                    (73, 79)   : "UE",
-                    (81, 89)   : "size"
-                   }
+    # log_type = ("[RLC_BUFFER]", 28)
+    # log_entries = { (20, 24)   : "frame",
+    #                 (25, 27)   : "slot",
+    #                 (73, 79)   : "UE",
+    #                 (81, 89)   : "size"
+    #                }
     
-    sample_rlc_buffer_log = OAILogParser(fn="../../examples/0118_debug_log_1_various_rate.log", log_type=log_type, log_entries=log_entries, 
-                                output_type="matlab", output_path="../0118_debug_log_1_rlc.mat")
+    # sample_rlc_buffer_log = OAILogParser(fn="../../examples/0127_5ue_iperf_100M.log", log_type=log_type, log_entries=log_entries, 
+    #                             output_type="matlab", output_path="../0118_debug_log_1_rlc.mat")
